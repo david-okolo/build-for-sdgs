@@ -89,15 +89,15 @@ const covid19ImpactEstimator = (data) => {
   // Add money lost over period of 30 days
   result.impact.dollarsInFlight = getDollarsInFlight(
     result.impact.infectionsByRequestedTime,
-    data.avgDailyIncomePopulation,
-    data.avgDailyIncomeInUSD,
+    data.region.avgDailyIncomePopulation,
+    data.region.avgDailyIncomeInUSD,
     period
   );
 
   result.severeImpact.dollarsInFlight = getDollarsInFlight(
     result.severeImpact.infectionsByRequestedTime,
-    data.avgDailyIncomePopulation,
-    data.avgDailyIncomeInUSD,
+    data.region.avgDailyIncomePopulation,
+    data.region.avgDailyIncomeInUSD,
     period
   );
 
