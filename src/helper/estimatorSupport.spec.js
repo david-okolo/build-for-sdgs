@@ -1,57 +1,57 @@
 import library from './estimatorSupport';
 
 const {
-  impactCurrentlyInfected,
-  severeCurrentlyInfected,
-  normalizedPeriod,
-  infectionsByRequestedTime,
-  severeCasesByRequestedTime,
-  hospitalBedsByRequestedTime,
-  casesForICUByRequestedTime,
-  casesForVentilatorsByRequestedTime,
-  dollarsInFlight
+  getImpactCurrentlyInfected,
+  getSevereCurrentlyInfected,
+  getNormalizedPeriod,
+  getInfectionsByRequestedTime,
+  getSevereCasesCount,
+  getRemainingHospitalBedsCount,
+  getCasesForICUCount,
+  getCasesForVentilatorsCount,
+  getDollarsInFlight
 } = library;
 
 describe('Support Functions Unit Tests', () => {
   it('should return correct "currentlyInfected"', () => {
-    expect(impactCurrentlyInfected(10)).toEqual(100);
-    expect(impactCurrentlyInfected(23)).toEqual(230);
-    expect(severeCurrentlyInfected(12)).toEqual(600);
-    expect(severeCurrentlyInfected(30)).toEqual(1500);
+    expect(getImpactCurrentlyInfected(10)).toEqual(100);
+    expect(getImpactCurrentlyInfected(23)).toEqual(230);
+    expect(getSevereCurrentlyInfected(12)).toEqual(600);
+    expect(getSevereCurrentlyInfected(30)).toEqual(1500);
   });
 
   it('should return normalized periods', () => {
-    expect(normalizedPeriod(21, 'days')).toEqual(21);
-    expect(normalizedPeriod(4, 'weeks')).toEqual(28);
-    expect(normalizedPeriod(2, 'months')).toEqual(60);
+    expect(getNormalizedPeriod(21, 'days')).toEqual(21);
+    expect(getNormalizedPeriod(4, 'weeks')).toEqual(28);
+    expect(getNormalizedPeriod(2, 'months')).toEqual(60);
   });
 
   it('should return correct "infectionsByRequestedTime"', () => {
-    expect(infectionsByRequestedTime(100, 21)).toEqual(12800);
-    expect(infectionsByRequestedTime(100, 23)).toEqual(12800);
-    expect(infectionsByRequestedTime(100, 25)).toEqual(25600);
+    expect(getInfectionsByRequestedTime(100, 21)).toEqual(12800);
+    expect(getInfectionsByRequestedTime(100, 23)).toEqual(12800);
+    expect(getInfectionsByRequestedTime(100, 25)).toEqual(25600);
   });
 
   it('should return correct number of "severeCases"', () => {
-    expect(severeCasesByRequestedTime(12800)).toEqual(1920);
-    expect(severeCasesByRequestedTime(12832)).toEqual(1924);
-    expect(severeCasesByRequestedTime(12828)).toEqual(1924);
+    expect(getSevereCasesCount(12800)).toEqual(1920);
+    expect(getSevereCasesCount(12832)).toEqual(1924);
+    expect(getSevereCasesCount(12828)).toEqual(1924);
   });
 
   it('should return correct number of hostital beds', () => {
-    expect(hospitalBedsByRequestedTime(12800, 300000)).toEqual(-2300);
-    expect(hospitalBedsByRequestedTime(1280, 300000)).toEqual(9220);
+    expect(getRemainingHospitalBedsCount(12800, 300000)).toEqual(-2300);
+    expect(getRemainingHospitalBedsCount(1280, 300000)).toEqual(9220);
   });
 
   it('should return correct number of cases for ICU', () => {
-    expect(casesForICUByRequestedTime(12800)).toEqual(640);
+    expect(getCasesForICUCount(12800)).toEqual(640);
   });
 
   it('should return correct number of cases for ventilators', () => {
-    expect(casesForVentilatorsByRequestedTime(12800)).toEqual(256);
+    expect(getCasesForVentilatorsCount(12800)).toEqual(256);
   });
 
   it('should return the correct value of money lost', () => {
-    expect(dollarsInFlight(12800, 0.71, 5)).toEqual(1363200);
+    expect(getDollarsInFlight(12800, 0.71, 5)).toEqual(1363200);
   });
 });
