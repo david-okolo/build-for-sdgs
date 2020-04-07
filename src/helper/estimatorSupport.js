@@ -55,7 +55,7 @@ const getNormalizedPeriod = (timeToElapse, periodType = days) => {
  * @param {number} period
  */
 const getInfectionsByRequestedTime = (currentlyInfected, period) => {
-  const factor = period / 3; // gets the total number of 3 day sets in the period
+  const factor = Math.floor(period / 3); // gets the total number of 3 day sets in the period
   return currentlyInfected * (2 ** factor);
 };
 
