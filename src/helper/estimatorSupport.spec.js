@@ -52,6 +52,6 @@ describe('Support Functions Unit Tests', () => {
   });
 
   it('should return the correct value of money lost', () => {
-    expect(getDollarsInFlight(12800, 0.71, 5)).toEqual(1363200);
+    expect(getDollarsInFlight(12800, 0.71, 5, 30)).toEqual(1363200);
   });
 });

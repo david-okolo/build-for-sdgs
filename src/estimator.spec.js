@@ -24,29 +24,34 @@ describe('Estimator Unit Tests', () => {
   it('should have a data property that holds the input data', () => {
     const result = estimator(data);
 
-    // Runs test loops to verify all data properties
-    Object.keys(data.region).forEach((key) => {
-      expect(result).toHaveProperty(['data', 'region', key], data.region[key]);
-    });
-
-    Object.keys(data).forEach((key) => {
-      if (key !== 'region') {
-        expect(result).toHaveProperty(['data', key], data[key]);
-      }
-    });
+    expect(result).toHaveProperty(['data', 'region', 'name'], data.region.name);
+    expect(result).toHaveProperty(['data', 'region', 'avgAge'], data.region.avgAge);
+    expect(result).toHaveProperty(['data', 'region', 'avgDailyIncomeInUSD'], data.region.avgDailyIncomeInUSD);
+    expect(result).toHaveProperty(['data', 'region', 'avgDailyIncomePopulation'], data.region.avgDailyIncomePopulation);
+    expect(result).toHaveProperty(['data', 'periodType'], data.periodType);
+    expect(result).toHaveProperty(['data', 'timeToElapse'], data.timeToElapse);
+    expect(result).toHaveProperty(['data', 'reportedCases'], data.reportedCases);
+    expect(result).toHaveProperty(['data', 'population'], data.population);
+    expect(result).toHaveProperty(['data', 'totalHospitalBeds'], data.totalHospitalBeds);
   });
 
   it('should have all required output data', () => {
-    const requiredImpactKeys = ['currentlyInfected', 'infectionsByRequestedTime', 'severeCasesByRequestedTime', 'hospitalBedsByRequestedTime', 'casesForVentilatorsByRequestedTime', 'casesForICUByRequestedTime', 'dollarsInFlight'];
-    const requiredSevereImpactKeys = ['currentlyInfected', 'infectionsByRequestedTime', 'severeCasesByRequestedTime', 'hospitalBedsByRequestedTime', 'casesForVentilatorsByRequestedTime', 'casesForICUByRequestedTime', 'dollarsInFlight'];
     const { impact, severeImpact } = estimator(data);
 
-    requiredImpactKeys.forEach((_key) => {
-      expect(impact).toHaveProperty(_key);
-    });
+    expect(impact).toHaveProperty('currentlyInfected');
+    expect(impact).toHaveProperty('infectionsByRequestedTime');
+    expect(impact).toHaveProperty('severeCasesByRequestedTime');
+    expect(impact).toHaveProperty('hospitalBedsByRequestedTime');
+    expect(impact).toHaveProperty('casesForVentilatorsByRequestedTime');
+    expect(impact).toHaveProperty('casesForICUByRequestedTime');
+    expect(impact).toHaveProperty('dollarsInFlight');
 
-    requiredSevereImpactKeys.forEach((_key) => {
-      expect(severeImpact).toHaveProperty(_key);
-    });
+    expect(severeImpact).toHaveProperty('currentlyInfected');
+    expect(severeImpact).toHaveProperty('infectionsByRequestedTime');
+    expect(severeImpact).toHaveProperty('severeCasesByRequestedTime');
+    expect(severeImpact).toHaveProperty('hospitalBedsByRequestedTime');
+    expect(severeImpact).toHaveProperty('casesForVentilatorsByRequestedTime');
+    expect(severeImpact).toHaveProperty('casesForICUByRequestedTime');
+    expect(severeImpact).toHaveProperty('dollarsInFlight');
   });
 });
