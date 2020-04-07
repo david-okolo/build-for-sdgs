@@ -59,19 +59,19 @@ const getInfectionsByRequestedTime = (currentlyInfected, period) => {
   return currentlyInfected * (2 ** factor);
 };
 
-const getSevereCasesCount = (numberOfInfections) => Math.floor(numberOfInfections * 0.15);
+const getSevereCasesCount = (numberOfInfections) => numberOfInfections * 0.15;
 
 const getRemainingHospitalBedsCount = (
   numberOfSevereCases,
   totalBeds
 ) => {
-  const availableBeds = Math.floor(totalBeds * 0.35);
+  const availableBeds = totalBeds * 0.35;
   return availableBeds - numberOfSevereCases;
 };
 
-const getCasesForICUCount = (numberOfInfections) => Math.floor(numberOfInfections * 0.05);
+const getCasesForICUCount = (numberOfInfections) => numberOfInfections * 0.05;
 
-const getCasesForVentilatorsCount = (numberOfInfections) => Math.floor(numberOfInfections * 0.02);
+const getCasesForVentilatorsCount = (numberOfInfections) => numberOfInfections * 0.02;
 
 const getDollarsInFlight = (
   numberOfInfections,
