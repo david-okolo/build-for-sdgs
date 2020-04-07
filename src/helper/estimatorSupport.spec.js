@@ -38,9 +38,9 @@ describe('Support Functions Unit Tests', () => {
     expect(getSevereCasesCount(12828)).toEqual(1924);
   });
 
-  it('should return correct number of hostital beds', () => {
-    expect(getRemainingHospitalBedsCount(12800, 300000)).toEqual(-2300);
-    expect(getRemainingHospitalBedsCount(1280, 300000)).toEqual(9220);
+  it('should return correct number of hospital beds', () => {
+    expect(getRemainingHospitalBedsCount(12800, 30000)).toEqual(-2300);
+    expect(getRemainingHospitalBedsCount(1280, 30000)).toEqual(9220);
   });
 
   it('should return correct number of cases for ICU', () => {
