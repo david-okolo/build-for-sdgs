@@ -6,7 +6,7 @@ const responseTime = (req, res, next) => {
   const startTime = process.hrtime();
 
   res.on('finish', () => {
-    toServerLog(`${req.method}    ${req.baseUrl}${req.path}   ${res.statusCode}   ${getDuration(startTime)}ms`);
+    toServerLog(`${req.method}    ${req.baseUrl ? req.baseUrl : ''}${req.path}   ${res.statusCode}   ${getDuration(startTime)}ms`);
   });
 
   next();
