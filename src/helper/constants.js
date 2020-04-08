@@ -7,8 +7,19 @@ const days = 'days';
 const weeks = 'weeks';
 const months = 'months';
 
+const getLogDate = () => {
+  const date = new Date();
+  return `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`;
+};
+
+const nanosecondsInASecond = 1e9;
+const nanosecondsInAMillisecond = 1e6;
+
 export default {
   days,
   weeks,
-  months
+  months,
+  nanosecondsInASecond,
+  nanosecondsInAMillisecond,
+  getLogDate
 };
