@@ -69,9 +69,9 @@ const getRemainingHospitalBedsCount = (
   return availableBeds - numberOfSevereCases;
 };
 
-const getCasesForICUCount = (numberOfInfections) => numberOfInfections * 0.05;
+const getCasesForICUCount = (numberOfInfections) => (numberOfInfections * 0.05).toFixed(2);
 
-const getCasesForVentilatorsCount = (numberOfInfections) => numberOfInfections * 0.02;
+const getCasesForVentilatorsCount = (numberOfInfections) => (numberOfInfections * 0.02).toFixed(2);
 
 const getDollarsInFlight = (
   numberOfInfections,
@@ -80,7 +80,7 @@ const getDollarsInFlight = (
   period
 ) => {
   const result = numberOfInfections * avgIncomePopulationPercentage * avgDailyIncome * period;
-  return result;
+  return result.toFixed(2);
 };
 
 const library = {
