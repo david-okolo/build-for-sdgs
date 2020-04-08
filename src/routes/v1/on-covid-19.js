@@ -11,11 +11,11 @@ const jsonHandler = (req, res) => {
   const estimatorOutput = new Estimator(covid19ImpactEstimator, req.body).toJSON();
   res.json(estimatorOutput);
 };
-router.get('/', jsonHandler);
+router.post('/', jsonHandler);
 
-router.get('/json', jsonHandler);
+router.post('/json', jsonHandler);
 
-router.get('/xml', (req, res) => {
+router.post('/xml', (req, res) => {
   const estimatorOutput = new Estimator(covid19ImpactEstimator, req.body).toXML();
   res.header('Content-Type', 'application/xml; charset=UTF-8');
   res.send(estimatorOutput);
