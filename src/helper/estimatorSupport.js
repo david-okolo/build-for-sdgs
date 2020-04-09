@@ -80,7 +80,7 @@ const getDollarsInFlight = (
   period
 ) => {
   const result = numberOfInfections * avgIncomePopulationPercentage * avgDailyIncome * period;
-  return result.toFixed(2);
+  return Number(result.toFixed(2));
 };
 
 const library = {
