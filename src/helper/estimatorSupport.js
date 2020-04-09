@@ -65,7 +65,7 @@ const getRemainingHospitalBedsCount = (
   numberOfSevereCases,
   totalBeds
 ) => {
-  const availableBeds = Math.floor(totalBeds * 0.35);
+  const availableBeds = Math.trunc(totalBeds * 0.35);
   return availableBeds - numberOfSevereCases;
 };
 
