@@ -8,7 +8,7 @@ const responseTime = (req, res, next) => {
   const timeDiff = duration < 10 ? `0${duration}` : duration;
 
   res.on('finish', () => {
-    toServerLog(`${req.method} ${req.baseUrl ? req.baseUrl : ''}${req.path} ${res.statusCode} ${timeDiff}ms`);
+    toServerLog(`${req.method}    ${req.baseUrl ? req.baseUrl : ''}${req.path}    ${res.statusCode}   ${timeDiff}ms`);
   });
 
   next();
