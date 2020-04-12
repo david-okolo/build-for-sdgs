@@ -24,7 +24,7 @@ app.get('/clearLogs', (req, res) => {
 
 app.use(responseTime);
 
-app.use('/', express.static('public'));
+// app.use('/', express.static('public'));
 
 app.use('/api/v1/on-covid-19', onCovid19RouteHandler);
 

@@ -24,8 +24,8 @@ router.post('/xml', (req, res) => {
 router.get('/logs', (req, res) => {
   fs.readFile(`./logs/request-response/${getLogDate()}.txt`, (err, data) => {
     if (err && err.code !== 'ENOENT') throw err;
-    res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-    res.end(data);
+    res.header('Content-Type', 'text/plain');
+    res.send(data);
   });
 });
 
