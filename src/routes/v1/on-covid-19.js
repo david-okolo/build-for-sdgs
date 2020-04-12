@@ -25,7 +25,7 @@ router.get('/logs', (req, res) => {
   fs.readFile(`./logs/request-response/${getLogDate()}.txt`, (err, data) => {
     if (err && err.code !== 'ENOENT') throw err;
     res.setHeader('Content-Type', 'text/plain');
-    res.send(data);
+    res.end(data.toString());
   });
 });
 
