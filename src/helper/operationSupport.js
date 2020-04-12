@@ -3,9 +3,9 @@ import constants from './constants';
 
 const { nanosecondsInASecond, nanosecondsInAMillisecond, getLogDate } = constants;
 
-const toServerLog = (logInput) => {
+const toServerLog = async (logInput) => {
   const line = `${logInput}\n`;
-  fs.appendFile(`./logs/request-response/${getLogDate()}.txt`, line, (err) => {
+  await fs.appendFileSync(`./logs/request-response/${getLogDate()}.txt`, line, (err) => {
     if (err) throw err;
   });
 };
