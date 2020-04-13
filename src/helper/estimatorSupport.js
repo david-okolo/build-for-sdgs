@@ -59,8 +59,19 @@ const getInfectionsByRequestedTime = (currentlyInfected, period) => {
   return currentlyInfected * (2 ** factor);
 };
 
+/**
+ * Calculates the number of severe cases
+ * @param {number} numberOfInfections
+ * @returns {number} the truncated value
+ */
 const getSevereCasesCount = (numberOfInfections) => Math.trunc(numberOfInfections * 0.15);
 
+/**
+ * Calculates hospital beds remaining
+ * @param {number} numberOfSevereCases
+ * @param {number} totalBeds
+ * @returns {number} the truncated value
+ */
 const getRemainingHospitalBedsCount = (
   numberOfSevereCases,
   totalBeds
@@ -69,10 +80,28 @@ const getRemainingHospitalBedsCount = (
   return Math.trunc(availableBeds - numberOfSevereCases);
 };
 
+/**
+ * Calculates the cases that'll need the ICU
+ * @param {number} numberOfInfections
+ * @returns {number} the truncated value
+ */
 const getCasesForICUCount = (numberOfInfections) => Math.trunc(numberOfInfections * 0.05);
 
+/**
+ * Calculates cases that'll need to use ventilators
+ * @param {number} numberOfInfections
+ * @returns {number} the truncated value
+ */
 const getCasesForVentilatorsCount = (numberOfInfections) => Math.trunc(numberOfInfections * 0.02);
 
+/**
+ * Calculates the economic loss in dollarsfor that period
+ * @param {number} numberOfInfections
+ * @param {number} avgIncomePopulationPercentage - as a decimal e.g. 0.76
+ * @param {number} avgDailyIncome - in US dollars
+ * @param {number} period - in days
+ * @returns {number} the truncated value
+ */
 const getDollarsInFlight = (
   numberOfInfections,
   avgIncomePopulationPercentage,

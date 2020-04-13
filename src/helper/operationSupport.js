@@ -1,8 +1,13 @@
 import fs from 'fs';
 import constants from './constants';
 
-const { nanosecondsInASecond, nanosecondsInAMillisecond, getLogDate } = constants;
+const { getLogDate } = constants;
 
+/**
+ * Appends the input to the request logs.
+ * Creates a new one each day.
+ * @param {string} logInput - The request-response cycle string data
+ */
 const toServerLog = async (logInput) => {
   const line = `${logInput}\n`;
   await fs.appendFileSync(`./logs/request-response/${getLogDate()}.txt`, line, (err) => {
@@ -10,14 +15,6 @@ const toServerLog = async (logInput) => {
   });
 };
 
-const getDuration = (start) => {
-  const duration = process.hrtime(start);
-
-  // in milliseconds
-  return (duration[0] * nanosecondsInASecond + duration[1]) / nanosecondsInAMillisecond;
-};
-
 export default {
-  toServerLog,
-  getDuration
+  toServerLog
 };

@@ -7,6 +7,10 @@ const days = 'days';
 const weeks = 'weeks';
 const months = 'months';
 
+/**
+ * Returns a dd-mm-yyyy representation of today's date
+ * @returns {string} - Today's date
+ */
 const getLogDate = () => {
   const date = new Date();
   return `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`;
