@@ -22,7 +22,7 @@ router.post('/xml', (req, res) => {
 });
 
 router.get('/logs', (req, res) => {
-  fs.readFile(`./logs/request-response/${getLogDate()}.txt`, (err, data) => {
+  fs.readFile(`./logs/request-response/${getLogDate()}.txt`, 'utf8', (err, data) => {
     if (err && err.code !== 'ENOENT') throw err;
     res.header('Content-Type', 'text/plain');
     res.send(data);
