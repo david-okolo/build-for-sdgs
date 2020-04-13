@@ -6,7 +6,8 @@ const { toServerLog } = support;
 const responseTimeHandler = responseTime((req, res, time) => {
   const duration = Math.round(time);
   const timeDiff = duration < 10 ? `0${duration}` : duration;
-  toServerLog(`${req.method}    ${req.baseUrl ? req.baseUrl : ''}${req.path}    ${res.statusCode}   ${timeDiff}ms`);
+  const path = req.path[req.path.length - 1] === '/' ? (req.path).substring(0, req.path.length - 1) : req.path;
+  toServerLog(`${req.method}    ${req.baseUrl ? req.baseUrl : ''}${path}    ${res.statusCode}   ${timeDiff}ms`);
 });
 
 export default responseTimeHandler;
