@@ -55,12 +55,23 @@ const getNormalizedPeriod = (timeToElapse, periodType = days) => {
  * @param {number} period
  */
 const getInfectionsByRequestedTime = (currentlyInfected, period) => {
-  const factor = Math.floor(period / 3); // gets the total number of 3 day sets in the period
+  const factor = Math.trunc(period / 3); // gets the total number of 3 day sets in the period
   return currentlyInfected * (2 ** factor);
 };
 
-const getSevereCasesCount = (numberOfInfections) => Math.floor(numberOfInfections * 0.15);
+/**
+ * Calculates the number of severe cases
+ * @param {number} numberOfInfections
+ * @returns {number} the truncated value
+ */
+const getSevereCasesCount = (numberOfInfections) => Math.trunc(numberOfInfections * 0.15);
 
+/**
+ * Calculates hospital beds remaining
+ * @param {number} numberOfSevereCases
+ * @param {number} totalBeds
+ * @returns {number} the truncated value
+ */
 const getRemainingHospitalBedsCount = (
   numberOfSevereCases,
   totalBeds
@@ -69,18 +80,36 @@ const getRemainingHospitalBedsCount = (
   return Math.trunc(availableBeds - numberOfSevereCases);
 };
 
-const getCasesForICUCount = (numberOfInfections) => Math.floor(numberOfInfections * 0.05);
+/**
+ * Calculates the cases that'll need the ICU
+ * @param {number} numberOfInfections
+ * @returns {number} the truncated value
+ */
+const getCasesForICUCount = (numberOfInfections) => Math.trunc(numberOfInfections * 0.05);
 
-const getCasesForVentilatorsCount = (numberOfInfections) => Math.floor(numberOfInfections * 0.02);
+/**
+ * Calculates cases that'll need to use ventilators
+ * @param {number} numberOfInfections
+ * @returns {number} the truncated value
+ */
+const getCasesForVentilatorsCount = (numberOfInfections) => Math.trunc(numberOfInfections * 0.02);
 
+/**
+ * Calculates the economic loss in dollarsfor that period
+ * @param {number} numberOfInfections
+ * @param {number} avgIncomePopulationPercentage - as a decimal e.g. 0.76
+ * @param {number} avgDailyIncome - in US dollars
+ * @param {number} period - in days
+ * @returns {number} the truncated value
+ */
 const getDollarsInFlight = (
   numberOfInfections,
   avgIncomePopulationPercentage,
   avgDailyIncome,
   period
 ) => {
-  const result = numberOfInfections * avgIncomePopulationPercentage * avgDailyIncome * period;
-  return Number(result.toFixed(2));
+  const result = (numberOfInfections * avgIncomePopulationPercentage * avgDailyIncome) / period;
+  return Math.trunc(result);
 };
 
 const library = {
