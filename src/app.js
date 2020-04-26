@@ -25,6 +25,7 @@ app.get('/clearLogs', (req, res) => {
 // the response time middleware to get request-response times.
 app.use(responseTime);
 
+app.use(express.static('public'));
 app.use('/api/v1/on-covid-19', onCovid19RouteHandler);
 
 export default app;
